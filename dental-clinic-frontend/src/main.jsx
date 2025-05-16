@@ -1,13 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css'
-import App from './App.jsx'
+import App from './App';
+import './index.css';
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+// Configurar interceptor global para axios (opcional)
+import axios from 'axios';
+
+// Configurar base URL para el entorno de desarrollo
+axios.defaults.baseURL = import.meta.env.DEV ? 'http://localhost:8080' : '';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </StrictMode>
-)
+  </React.StrictMode>,
+);
